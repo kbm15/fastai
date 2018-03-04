@@ -72,9 +72,6 @@ def fit(model, data, epochs, opt, crit, metrics=None, callbacks=None, stepper=St
        epochs(int): number of epochs
        crit: loss function to optimize. Example: F.cross_entropy
     """
-	GPUs = GPU.getGPUs()
-	# XXX: only one GPU on Colab and isn't guaranteed
-	gpu = GPUs[0]
     stepper = stepper(model, opt, crit, **kwargs)
     metrics = metrics or []
     callbacks = callbacks or []
@@ -116,13 +113,6 @@ def fit(model, data, epochs, opt, crit, metrics=None, callbacks=None, stepper=St
 
     for cb in callbacks: cb.on_train_end()
     return vals
-
-	
-def printm():
-  process = psutil.Process(os.getpid())
-  print("Gen RAM Free: " + humanize.naturalsize( psutil.virtual_memory().available ), " I Proc size: " + humanize.naturalsize( process.memory_info().rss))
-  print('GPU RAM Free: {0:.0f}MB | Used: {1:.0f}MB | Util {2:3.0f}% | Total {3:.0f}MB'.format(gpu.memoryFree, gpu.memoryUsed, gpu.memoryUtil*100, gpu.memoryTotal))
-
 
 
 def print_stats(epoch, values, decimals=6):

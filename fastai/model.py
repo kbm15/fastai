@@ -2,10 +2,6 @@ from .imports import *
 from .torch_imports import *
 from .core import *
 from .layer_optimizer import *
-import psutil
-import humanize
-import os
-import GPUtil as GPU
 
 def cut_model(m, cut):
     return list(m.children())[:cut] if cut else [m]

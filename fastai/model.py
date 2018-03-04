@@ -111,7 +111,7 @@ def fit(model, data, epochs, opt, crit, metrics=None, callbacks=None, stepper=St
             i += 1
 
         vals = validate(stepper, data.val_dl, metrics)
-        if epoch == 0: print(layout.format(*names))
+        #if epoch == 0: print(layout.format(*names))
         print_stats(epoch, [debias_loss] + vals)		
 		printm()
         stop=False

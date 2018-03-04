@@ -104,9 +104,8 @@ def fit(model, data, epochs, opt, crit, metrics=None, callbacks=None, stepper=St
             i += 1
 
         vals = validate(stepper, data.val_dl, metrics)
-        #if epoch == 0: print(layout.format(*names))
-        print_stats(epoch, [debias_loss] + vals)		
-		printm()
+        printm()
+        print_stats(epoch, [debias_loss] + vals)			
         stop=False
         for cb in callbacks: stop = stop or cb.on_epoch_end(vals)
         if stop: break
